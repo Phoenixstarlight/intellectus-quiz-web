@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Intelletus Quiz Club</title>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #0f172a; /* dark slate for contrast */
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Floating Circles Background */
+    .bg-animation {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-animation span {
+      position: absolute;
+      bottom: -100px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      animation: floatUp linear infinite;
+    }
+
+    .bg-animation span:nth-child(1) { left: 15%; width: 80px; height: 80px; animation-duration: 18s; }
+    .bg-animation span:nth-child(2) { left: 30%; width: 40px; height: 40px; animation-duration: 25s; }
+    .bg-animation span:nth-child(3) { left: 45%; width: 100px; height: 100px; animation-duration: 22s; }
+    .bg-animation span:nth-child(4) { left: 60%; width: 60px; height: 60px; animation-duration: 20s; }
+    .bg-animation span:nth-child(5) { left: 75%; width: 120px; height: 120px; animation-duration: 30s; }
+    .bg-animation span:nth-child(6) { left: 85%; width: 50px; height: 50px; animation-duration: 16s; }
+    .bg-animation span:nth-child(7) { left: 50%; width: 90px; height: 90px; animation-duration: 28s; }
+    .bg-animation span:nth-child(8) { left: 10%; width: 70px; height: 70px; animation-duration: 24s; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0.6; }
+      50% { opacity: 0.3; }
+      100% { transform: translateY(-120vh) scale(1.4); opacity: 0; }
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    header p { font-size: 1.2rem; opacity: 0.9; }
+
+
+
+
+    .members {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      padding: 3rem;
+    }
+
+    .card {
+      perspective: 1000px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .card.show { opacity: 1; transform: translateY(0); }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease;
+    }
+
+    .card:hover .card-inner { transform: rotateY(180deg); }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%; height: 100%;
+      border-radius: 15px;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .card-front {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .card-front h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .card-front p { font-size: 1rem; opacity: 0.85; }
+
+    .card-back {
+      background: #ffcc00;
+      color: #222;
+      transform: rotateY(180deg);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .card-back h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .card-back p { font-size: 1rem; }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(0,0,0,0.5);
+      margin-top: 2rem;
+    }
+    /* Navbar */
+.navbar {
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #00ffff;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00ffff;
+}
+
+/* Push page content below navbar */
+body {
+  padding-top: 70px;
+}
+
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+  <div class="logo">Intelletus Quiz Club</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="database.html">Database</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+
+  <!-- Background animation -->
+  <div class="bg-animation">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <header>
+    <h1>Intelletus Quiz Club</h1>
+    <p>Meet Our Team</p>
+  </header>
+
+  </section>
+
+  <section class="members">
+    <!-- 8 member cards (placeholders, same as before) -->
+    <div class="card"><div class="card-inner">
+      <div class="card-front"><h3>Krithik Sam</h3><p>President</p></div>
+      <div class="card-back"><h3>President</h3><p>Leads the club, plans events, and inspires members.</p></div>
+    </div></div>
+    
+    <div class="card"><div class="card-inner">
+      <div class="card-front"><h3>Raghav</h3><p></p></div>
+      <div class="card-back"><h3>Vice-President</h3>
+    </div></div>
+
+    <div class="card"><div class="card-inner">
+      <div class="card-front"><h3>Ghowshik</h3><p></p></div>
+      <div class="card-back"><h3>Ace</h3>
+    </div></div>
+
+    <div class="card"><div class="card-inner">
+      <div class="card-front"><h3>Pranav</h3><p></p></div>
+      <div class="card-back"><h3>Technical-support</h3>
+    </div></div>
+
+        <div class="card"><div class="card-inner">
+      <div class="card-front"><h3>Giritharan</h3><p></p></div>
+      <div class="card-back"><h3>Technical-support</h3>
+    </div></div>
+
+        <div class="card"><div class="card-inner">
+      <div class="card-front"><h3>yashwanth</h3><p></p></div>
+      <div class="card-back"><h3>Spokesperson of the club</h3>
+    </div></div>
+
+      <div class="card"><div class="card-inner">
+      <div class="card-front"><h3>Ramprasad</h3><p></p></div>
+      <div class="card-back"><h3>Treasurer</h3>
+    </div></div>
+    <!-- Add the other 7 cards same way -->
+  </section>
+
+  <footer>
+    <p>© 2025 Intelletus Quiz Club </p>
+  </footer>
+
+  <script>
+    // Scroll reveal for cards
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('show');
+          }, i * 150);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
+  </script>
+</body>
+</html>

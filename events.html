@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events | Intelletus Quiz Club</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+    body {
+      background: #0d1117;
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* 🎉 Confetti Animation */
+    .confetti {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .confetti span {
+      position: absolute;
+      width: 10px; height: 20px;
+      background: red;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Random colors */
+    .confetti span:nth-child(3n) { background: yellow; }
+    .confetti span:nth-child(4n) { background: blue; }
+    .confetti span:nth-child(5n) { background: green; }
+    .confetti span:nth-child(6n) { background: orange; }
+    .confetti span:nth-child(7n) { background: pink; }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    header p { font-size: 1.2rem; opacity: 0.9; }
+
+    .events {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .event {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .event:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+    }
+
+    .event h2 {
+      color: #ffcc00;
+      margin-bottom: 0.5rem;
+    }
+
+    .event p {
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(0,0,0,0.5);
+      margin-top: 2rem;
+    }
+    /* Floating Gradient Blobs Background */
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: #0f172a; /* fallback base color */
+}
+
+.bg-blobs span {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.7;
+  animation: moveBlobs 30s linear infinite;
+}
+
+.bg-blobs span:nth-child(1) {
+  background: #ff6ec7; /* pink */
+  top: 10%; left: 15%;
+  animation-duration: 35s;
+}
+.bg-blobs span:nth-child(2) {
+  background: #4facfe; /* blue */
+  top: 40%; left: 70%;
+  animation-duration: 40s;
+}
+.bg-blobs span:nth-child(3) {
+  background: #43e97b; /* green */
+  top: 65%; left: 25%;
+  animation-duration: 50s;
+}
+.bg-blobs span:nth-child(4) {
+  background: #fddb92; /* yellow/orange */
+  top: 20%; left: 50%;
+  animation-duration: 60s;
+}
+
+@keyframes moveBlobs {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(50px, -60px) scale(1.2); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+/* Navbar */
+.navbar {
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #00ffff;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00ffff;
+}
+
+/* Push page content below navbar */
+body {
+  padding-top: 70px;
+}
+
+  </style>
+</head>
+<body>
+       <nav class="navbar">
+  <div class="logo">Intelletus Quiz Club</div>
+  <ul class="nav-links">
+    <li><a href="home_page.html">Home</a></li>
+    <li><a href="about_us.html">About Us</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="results.html">Database</a></li>
+    <li><a href="contacts.html">Contact</a></li>
+  </ul>
+</nav>
+<div class="bg-blobs">
+  <span></span><span></span><span></span><span></span>
+</div>
+
+  <!-- 🎉 Confetti Background -->
+  <div class="confetti">
+    <!-- 40 confetti pieces -->
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <header>
+    <h1>Intelletus Quiz Club</h1>
+    <p>Our Competitions & Events</p>
+  </header>
+
+  <section class="events">
+    <div class="event">
+      <h2>Independence Day Quiz 2025</h2>
+      <p>Our flagship event held on 15th August with enthusiastic participation from Grades 6–8. 
+         The event celebrated India’s freedom struggle with fun & challenging questions.</p>
+    </div>
+
+    <div class="event">
+      <h2>Weekly Quiz Rounds</h2>
+      <p>Regular in-house quiz battles where members sharpen their skills and prepare for school-level 
+         and inter-school competitions.</p>
+    </div>
+
+    <div class="event">
+      <h2>Upcoming: Color Clue Hunt</h2>
+      <p>A grand event planned later this year, where Intelletus Quiz Club will organize a competition for  
+        classes 3-5 !</p>
+    </div>
+    <div class="event">
+      <h2>Upcoming:???  </h2>
+      <p>A grand event planned later this year, where Intelletus Quiz Club will compete against other 
+         schools in a knowledge face-off!</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Intelletus Quiz Club | Designed for Sri Vignesh Vidyalaya</p>
+  </footer>
+
+  <script>
+    // Randomize confetti positions & speeds
+    const confetti = document.querySelectorAll('.confetti span');
+    confetti.forEach(span => {
+      span.style.left = Math.random() * 100 + "vw";
+      span.style.animationDuration = (10 + Math.random() * 10) + "s";
+      span.style.opacity = Math.random();
+    });
+  </script>
+
+</body>
+</html>

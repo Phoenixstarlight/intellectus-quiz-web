@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Results Database | Intelletus Quiz Club</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Matrix Canvas Background */
+    #matrix-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      z-index: -1;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+    }
+    header h1 { font-size: 2.2rem; margin: 0; }
+
+    .search-bar {
+      text-align: center;
+      margin: 2rem;
+    }
+    .search-bar input {
+      padding: 0.7rem 1rem;
+      width: 60%;
+      max-width: 400px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    table {
+      width: 90%;
+      margin: auto;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    th, td {
+      padding: 1rem;
+      text-align: center;
+    }
+    th {
+      background: #00ff0033;
+      color: #00ff00; /* green header for matrix vibe */
+    }
+    tr:nth-child(even) {
+      background: rgba(255,255,255,0.05);
+    }
+    tr:hover {
+      background: rgba(0, 255, 0, 0.2);
+    }
+    /* Navbar */
+.navbar {
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #00ffff;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00ffff;
+}
+
+/* Push page content below navbar */
+body {
+  padding-top: 70px;
+}
+
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+  <div class="logo">Intelletus Quiz Club</div>
+  <ul class="nav-links">
+    <li><a href="home_page.html">Home</a></li>
+    <li><a href="about_us.html">About Us</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="results.html">Database</a></li>
+    <li><a href="contacts.html">Contact</a></li>
+  </ul>
+</nav>
+
+  <!-- Matrix Background -->
+  <canvas id="matrix-bg"></canvas>
+
+  <header>
+    <h1>Quiz Results Database</h1>
+    <p>Search winners, participants, and event records</p>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search by name, grade, or event...">
+  </div>
+
+  <table id="resultsTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Grade</th>
+        <th>Event</th>
+        <th>Position</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 📝 Add your winners here -->
+      <tr><td>[Name 1]</td><td>[Grade]</td><td>[Event]</td><td>[Position]</td><td>[Score]</td></tr>
+      <tr><td>[Name 2]</td><td>[Grade]</td><td>[Event]</td><td>[Position]</td><td>[Score]</td></tr>
+      <tr><td>[Name 3]</td><td>[Grade]</td><td>[Event]</td><td>[Position]</td><td>[Score]</td></tr>
+      <tr><td>[Name 4]</td><td>[Grade]</td><td>[Event]</td><td>[Position]</td><td>[Score]</td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    // Matrix animation
+    const canvas = document.getElementById("matrix-bg");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "01";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+
+    let drops = [];
+    for (let x = 0; x < columns; x++) {
+      drops[x] = 1;
+    }
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#0f0"; // Matrix green
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        let text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 33);
+
+    // Search filter
+    document.getElementById("searchInput").addEventListener("keyup", function() {
+      let filter = this.value.toLowerCase();
+      let rows = document.querySelectorAll("#resultsTable tbody tr");
+      rows.forEach(row => {
+        let text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? "" : "none";
+      });
+    });
+  </script>
+</body>
+</html>
